@@ -1,9 +1,12 @@
+import os
 # librería requerida por aws cli
 import boto3
 
 # Parámetros
 NOMBRE_BUCKET = "rekogtestusm"
 CONFIDENCE = 97
+CARPETA_CONTROL = "control"
+CARPETA_PRUEBAS = "pruebas"
 
 # Filtrar texto de otros atributos y con confianza > 97%
 def filtrarTexto(textDetections):
@@ -30,15 +33,24 @@ def detect_text(photo, bucket):
     texto = filtrarTexto(textDetections)
     return texto
 
+# Armar lista con archivos en la carpeta especificada
+def listarArchivos(carpeta):
+     lista = os.listdir("./"+carpeta)
+     return lista
+
 def main():
-
-    photo='control.png'
-    #photo='prueba.jpg'
     bucket=NOMBRE_BUCKET
+    # Identificar archivos
+    archivos_control = listarArchivos(CARPETA_CONTROL)
+    archivos_prueba = listarArchivos(CARPETA_PRUEBAS)
+    # Extraer texto y probar
+    control = detect_text(archivos_control[0], bucket)
+    print(str(control))
+    for prueba in archivos_prueba:
+        prueba = detect_text(prueba, bucket)
+        print(str(prueba))
 
-    texto=detect_text(photo, bucket)
-    print("Text detected: " + str(texto))
-
+        
 
 if __name__ == "__main__":
     main()
