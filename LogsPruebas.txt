@@ -1,0 +1,2 @@
+[08/06/2020 18:51:27] Prueba archivo: ocr.png - Resultado: True
+[08/06/2020 18:51:30] Prueba archivo: prueba.jpg - Resultado: True

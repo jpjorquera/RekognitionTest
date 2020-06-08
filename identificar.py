@@ -1,12 +1,19 @@
 import os
+import datetime
 # librería requerida por aws cli
 import boto3
 
 # Parámetros
-NOMBRE_BUCKET = "rekogtestusm"
 CONFIDENCE = 97
 CARPETA_CONTROL = "control"
 CARPETA_PRUEBAS = "pruebas"
+
+# Leer nombre de bucket en archivo separado
+def readBucketName():
+    archivo = open("./bucket.txt", "r")
+    bucketName = archivo.readline().strip()
+    archivo.close()
+    return bucketName
 
 # Filtrar texto de otros atributos y con confianza > 97%
 def filtrarTexto(textDetections):
@@ -38,19 +45,30 @@ def listarArchivos(carpeta):
      lista = os.listdir("./"+carpeta)
      return lista
 
+# Agregar log en el archivo para la prueba del archivo indicado
+def imprimirLog(archivo, nombrePrueba, resultado):
+    # Formato: [DD/MM/YYYY HH:MM:SS] Caso de prueba id #id - Resultado: “True/False”
+    tiempo_actual = datetime.datetime.now()
+    tiempo_a_imprimir = tiempo_actual.strftime("[%d/%m/%Y %H:%M:%S]")
+    linea_a_escribir = tiempo_a_imprimir+' Prueba archivo: '+str(nombrePrueba)+' - Resultado: '+str(resultado)+"\n"
+    archivo.write(linea_a_escribir)
+
 def main():
-    bucket=NOMBRE_BUCKET
+    bucket=readBucketName()
     # Identificar archivos
     archivos_control = listarArchivos(CARPETA_CONTROL)
     archivos_prueba = listarArchivos(CARPETA_PRUEBAS)
     # Extraer texto y probar
-    control = detect_text(archivos_control[0], bucket)
-    print(str(control))
+    texto_control = detect_text(archivos_control[0], bucket)
+    # Imprimir en archivo de logs
+    salida = open("LogsPruebas.txt", mode="w")
     for prueba in archivos_prueba:
-        prueba = detect_text(prueba, bucket)
-        print(str(prueba))
+        texto_prueba = detect_text(prueba, bucket)
+        # Placeholder res
+        resultado = True
+        imprimirLog(salida, prueba, resultado)
 
-        
+    salida.close()
 
 if __name__ == "__main__":
     main()
