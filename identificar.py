@@ -50,8 +50,16 @@ def imprimirLog(archivo, nombrePrueba, resultado):
     # Formato: [DD/MM/YYYY HH:MM:SS] Caso de prueba id #id - Resultado: “True/False”
     tiempo_actual = datetime.datetime.now()
     tiempo_a_imprimir = tiempo_actual.strftime("[%d/%m/%Y %H:%M:%S]")
-    linea_a_escribir = tiempo_a_imprimir+' Prueba archivo: '+str(nombrePrueba)+' - Resultado: '+str(resultado)+"\n"
+    linea_a_escribir = tiempo_a_imprimir+' Prueba archivo: "'+str(nombrePrueba)+'" - Resultado: '+str(resultado)+"\n"
     archivo.write(linea_a_escribir)
+
+# Función para verificar si el texto de prueba se encuentra contenido en el texto de control
+# los textos vienen en minúsculas
+def compararPrueba(control, prueba):
+    control = " ".join(control)
+    prueba = " ".join(prueba)
+    resultado = prueba in control
+    return resultado
 
 def main():
     bucket=readBucketName()
@@ -64,8 +72,7 @@ def main():
     salida = open("LogsPruebas.txt", mode="w")
     for prueba in archivos_prueba:
         texto_prueba = detect_text(prueba, bucket)
-        # Placeholder res
-        resultado = True
+        resultado = compararPrueba(texto_control, texto_prueba)
         imprimirLog(salida, prueba, resultado)
 
     salida.close()
