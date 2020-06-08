@@ -63,12 +63,14 @@ def compararPrueba(control, prueba):
 
 def main():
     bucket=readBucketName()
+
     # Identificar archivos
     archivos_control = listarArchivos(CARPETA_CONTROL)
     archivos_prueba = listarArchivos(CARPETA_PRUEBAS)
+
     # Extraer texto y probar
     texto_control = detect_text(archivos_control[0], bucket)
-    # Imprimir en archivo de logs
+    ## Imprimir en archivo de logs
     salida = open("LogsPruebas.txt", mode="w")
     for prueba in archivos_prueba:
         texto_prueba = detect_text(prueba, bucket)

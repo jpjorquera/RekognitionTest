@@ -1,4 +1,4 @@
-# Prubas servicio Rekognition AWS
+# Pruebas servicio Rekognition AWS
 Se busca verificar si el texto en las imágenes de prueba se encuentra en la imagen de control haciendo uso de Rekognition de Amazon Web Services.
 
 ## Instrucciones de uso
