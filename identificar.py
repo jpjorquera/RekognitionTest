@@ -43,6 +43,7 @@ def detect_text(photo, bucket):
 # Armar lista con archivos en la carpeta especificada
 def listarArchivos(carpeta):
      lista = os.listdir("./"+carpeta)
+     if ".DS_Store" in lista: lista.remove(".DS_Store")
      return lista
 
 # Agregar log en el archivo para la prueba del archivo indicado
@@ -58,7 +59,9 @@ def imprimirLog(archivo, nombrePrueba, resultado):
 def compararPrueba(control, prueba):
     control = " ".join(control)
     prueba = " ".join(prueba)
-    resultado = prueba in control
+    #print(control)
+    #print(prueba)
+    resultado = control in prueba
     return resultado
 
 def main():
@@ -70,13 +73,15 @@ def main():
 
     # Extraer texto y probar
     texto_control = detect_text(archivos_control[0], bucket)
+    #print(texto_control)
     ## Imprimir en archivo de logs
     salida = open("LogsPruebas.txt", mode="w")
     for prueba in archivos_prueba:
+        #print(prueba)
         texto_prueba = detect_text(prueba, bucket)
+        #print(texto_prueba)
         resultado = compararPrueba(texto_control, texto_prueba)
         imprimirLog(salida, prueba, resultado)
-
     salida.close()
 
 if __name__ == "__main__":

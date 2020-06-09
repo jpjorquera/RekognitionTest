@@ -1,3 +1,2 @@
-[08/06/2020 19:32:14] Prueba archivo: "ocr.png" - Resultado: False
-[08/06/2020 19:32:17] Prueba archivo: "simple.jpg" - Resultado: True
-[08/06/2020 19:32:19] Prueba archivo: "prueba.jpg" - Resultado: False
+[08/06/2020 21:35:46] Prueba archivo: "simple.jpg" - Resultado: False
+[08/06/2020 21:35:48] Prueba archivo: "prueba.jpg" - Resultado: False

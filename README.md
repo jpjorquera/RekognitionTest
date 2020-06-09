@@ -15,7 +15,6 @@ Es necesario tener las credenciales y configuración de AWS ingresadas en la con
 `pip install boto3`
 
 ### Ejecutar
-
 `python identificar.py`
 
 ### Resultados
