@@ -59,9 +59,10 @@ def imprimirLog(archivo, nombrePrueba, resultado):
 def compararPrueba(control, prueba):
     control = " ".join(control)
     prueba = " ".join(prueba)
-    #print(control)
-    #print(prueba)
+    #print("control:\n",control)
+    #print("prueba:\n",prueba)
     resultado = control in prueba
+    #print("resultado: ",resultado)
     return resultado
 
 def main():
@@ -77,7 +78,7 @@ def main():
     ## Imprimir en archivo de logs
     salida = open("LogsPruebas.txt", mode="w")
     for prueba in archivos_prueba:
-        #print(prueba)
+        print(prueba)
         texto_prueba = detect_text(prueba, bucket)
         #print(texto_prueba)
         resultado = compararPrueba(texto_control, texto_prueba)

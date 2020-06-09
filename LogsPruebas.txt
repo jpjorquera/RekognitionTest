@@ -1,2 +1,4 @@
-[08/06/2020 21:35:46] Prueba archivo: "simple.jpg" - Resultado: False
-[08/06/2020 21:35:48] Prueba archivo: "prueba.jpg" - Resultado: False
+[08/06/2020 22:26:03] Prueba archivo: "limite50.png" - Resultado: True
+[08/06/2020 22:26:11] Prueba archivo: "limite51.png" - Resultado: False
+[08/06/2020 22:26:18] Prueba archivo: "limite49.png" - Resultado: True
+[08/06/2020 22:26:23] Prueba archivo: "96confianza.jpg" - Resultado: False
