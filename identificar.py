@@ -78,7 +78,7 @@ def main():
     ## Imprimir en archivo de logs
     salida = open("LogsPruebas.txt", mode="w")
     for prueba in archivos_prueba:
-        print(prueba)
+        print("Prueba actual: ", prueba)
         texto_prueba = detect_text(prueba, bucket)
         #print(texto_prueba)
         resultado = compararPrueba(texto_control, texto_prueba)
